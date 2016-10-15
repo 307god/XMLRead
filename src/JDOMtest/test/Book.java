@@ -1,4 +1,4 @@
-package JDOMtest;
+package JDOMtest.test;
 
 /**
  * Created by james on 2016/10/14.

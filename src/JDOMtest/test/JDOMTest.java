@@ -1,4 +1,4 @@
-package JDOMtest;
+package JDOMtest.test;
 
 import org.jdom.Attribute;
 import org.jdom.Document;

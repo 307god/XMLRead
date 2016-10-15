@@ -1,7 +1,7 @@
 package Test;
 
 import DOM4Jtest.test.DOM4JTest;
-import JDOMtest.JDOMTest;
+import JDOMtest.test.JDOMTest;
 import SAXtest.test.Book;
 import SAXtest.test.SAXParserHandler;
 import org.dom4j.DocumentException;
@@ -136,7 +136,7 @@ public class ParseTest {
             List<Element> bookList = rootElement.getChildren();
             //继续进行解析
             for (Element book : bookList) {
-                JDOMtest.Book bookEntity = new JDOMtest.Book();
+                JDOMtest.test.Book bookEntity = new JDOMtest.test.Book();
                 System.out.println("=====开始解析第" + (bookList.indexOf(book) + 1) + "本书=====");
                 //解析book的属性集合
                 List<Attribute> attrList = book.getAttributes();
