@@ -12,7 +12,10 @@ import java.io.IOException;
  */
 public class SAXTest {
 
-    public static void main(String[] args){
+    /**
+     * 解析xml文件
+     */
+    public static void saxXmlParser() {
         //获取SAXParserFactory的实例
         SAXParserFactory factory = SAXParserFactory.newInstance();
         try {
@@ -38,5 +41,12 @@ public class SAXTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args){
+        //创建DOMTest对象
+        SAXTest test = new SAXTest();
+        //调用解析方法，解析xml文件
+        test.saxXmlParser();
     }
 }

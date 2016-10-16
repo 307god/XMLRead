@@ -26,7 +26,10 @@ public class DOM4JTest {
         DOM4JTest.bookList = bookList;
     }
 
-    public static void main(String[] args){
+    /**
+     * 解析xml文件
+     */
+    public static void dom4jXmlParser() {
         //解析book.xml文件
         //创建SAXReader的对象reader
         SAXReader reader = new SAXReader();
@@ -73,10 +76,16 @@ public class DOM4JTest {
                 System.out.println(bookList.size());
                 System.out.println(bookList.get(0).getId());
                 System.out.println(bookList.get(0).getName());
-
             }
         } catch (DocumentException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args){
+        //创建DOMTest对象
+        DOM4JTest test = new DOM4JTest();
+        //调用解析方法，解析xml文件
+        test.dom4jXmlParser();
     }
 }

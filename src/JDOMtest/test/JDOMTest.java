@@ -25,7 +25,10 @@ public class JDOMTest {
         JDOMTest.booksList = booksList;
     }
 
-    public static void main(String[] args) {
+    /**
+     * 解析xml文件
+     */
+    public static void jdomXmlParser() {
         //进行对books.xml文件的JDOM解析
         //准备工作
         //1、创建一个SAXBuilder的对象
@@ -90,5 +93,12 @@ public class JDOMTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) {
+        //创建DOMTest对象
+        JDOMTest test = new JDOMTest();
+        //调用解析方法，解析xml文件
+        test.jdomXmlParser();
     }
 }

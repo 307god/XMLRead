@@ -14,7 +14,10 @@ import java.io.IOException;
  */
 public class DOMTest {
 
-    public static void main(String[] args) {
+    /**
+     * 解析xml文件
+     */
+    public static void domXmlParser(){
         // 创建一个DocumentBuilderFactory的对象
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         try {
@@ -53,7 +56,7 @@ public class DOMTest {
                 NodeList childNodes = book.getChildNodes();
                 // 遍历childNodes获取每个节点的节点名和节点值
                 System.out.println("第" + (i + 1) + "本书共有" +
-                childNodes.getLength() + "个子节点");
+                        childNodes.getLength() + "个子节点");
                 for (int k = 0; k < childNodes.getLength(); k++){
                     // 区分出text类型的node以及element类型的node
                     if (childNodes.item(k).getNodeType() == Node.ELEMENT_NODE) {
@@ -74,5 +77,12 @@ public class DOMTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) {
+        //创建DOMTest对象
+        DOMTest test = new DOMTest();
+        //调用解析方法，解析xml文件
+        test.domXmlParser();
     }
 }
