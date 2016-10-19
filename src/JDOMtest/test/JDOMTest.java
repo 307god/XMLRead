@@ -1,10 +1,10 @@
 package JDOMtest.test;
 
-import org.jdom.Attribute;
-import org.jdom.Document;
-import org.jdom.Element;
-import org.jdom.JDOMException;
+import Entity.Book;
+import org.jdom.*;
 import org.jdom.input.SAXBuilder;
+import org.jdom.output.Format;
+import org.jdom.output.XMLOutputter;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -95,10 +95,51 @@ public class JDOMTest {
         }
     }
 
+    /**
+     * 生成xml文件
+     */
+    public static void jdomXmlCreate() {
+        //1、生成一个根节点
+        Element rss = new Element("rss");
+        //2、为节点添加属性
+        rss.setAttribute("version", "2.0");
+        //3、生成一个document对象
+        Document document = new Document(rss);
+
+        Element channel = new Element("channel");
+        rss.addContent(channel);
+        Element title = new Element("title");
+        title.setText("<<国内最新新闻>>");
+        title.addContent(new CDATA("国内最新新闻"));
+        channel.addContent(title);
+
+        Format format = Format.getCompactFormat();
+        format.setIndent("");
+        format.setEncoding("GBK");
+
+        //4、创建XMLOutputter的对象
+        XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat()){
+            @Override
+            public String escapeElementEntities(String str) {
+                //return super.escapeElementEntities(str);
+                return str;
+            }
+        };
+
+        //5、利用outputer将document对象转换成xml文档
+        try {
+            outputter.output(document, new FileOutputStream(new File("rssnews1.xml")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
         //创建DOMTest对象
         JDOMTest test = new JDOMTest();
         //调用解析方法，解析xml文件
-        test.jdomXmlParser();
+//        test.jdomXmlParser();
+        //调用生成方法，生成xml文件
+        test.jdomXmlCreate();
     }
 }

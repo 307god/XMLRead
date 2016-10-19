@@ -1,4 +1,4 @@
-package DOM4Jtest.test;
+package Entity;
 
 /**
  * Created by james on 2016/10/14.

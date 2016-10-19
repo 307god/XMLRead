@@ -1,12 +1,14 @@
 package DOM4Jtest.test;
 
-import org.dom4j.Attribute;
-import org.dom4j.Document;
-import org.dom4j.DocumentException;
-import org.dom4j.Element;
+import Entity.Book;
+import org.dom4j.*;
+import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
+import org.dom4j.io.XMLWriter;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -82,10 +84,44 @@ public class DOM4JTest {
         }
     }
 
+    /**
+     * 生成xml文件
+     */
+    public static void dom4jXmlCreate() {
+        //1、创建document对象，代表整个xml文档
+        Document document = DocumentHelper.createDocument();
+        //2、创建根节点rss
+        Element rss = document.addElement("rss");
+        //3、向rss节点中添加version属性
+        rss.addAttribute("version", "2.0");
+        //4、生成子节点以及节点内容
+        Element channel = rss.addElement("channel");
+        Element title = channel.addElement("title");
+//        title.setText("<国内最新新闻>");
+        title.addCDATA("国内新闻");
+        //5设置生成xml的格式
+        OutputFormat format = OutputFormat.createPrettyPrint();
+        format.setEncoding("GBK");
+        //6、生成xml文件
+        File file = new File("rssnews.xml");
+        XMLWriter write = null;
+        try {
+            write = new XMLWriter(new FileOutputStream(file), format);
+            //设置是否转义，默认值是true，代表转义
+            write.setEscapeText(true);
+            write.write(document);
+            write.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args){
         //创建DOMTest对象
         DOM4JTest test = new DOM4JTest();
         //调用解析方法，解析xml文件
-        test.dom4jXmlParser();
+//        test.dom4jXmlParser();
+        //调用生成方法，生成xml文件
+        test.dom4jXmlCreate();
     }
 }
